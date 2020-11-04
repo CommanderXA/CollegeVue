@@ -4,10 +4,8 @@
             <input v-model="note.title" type="text" placeholder="Title">
             <div class="select-item">
                 <label>Priority:</label>
-                <select>
-                    <option>Standard</option>
-                    <option>High</option>
-                    <option>Very High</option>
+                <select v-model="note.priority">
+                    <option v-for="(priority, index) in priorities" v-bind:key="index">{{ priority }}</option>
                 </select>
             </div>
         </div>
@@ -21,6 +19,10 @@ export default {
     props: {
         note: {
             type: Object,
+            required: true,
+        },
+        priorities: {
+            type: Array,
             required: true,
         }
     },
