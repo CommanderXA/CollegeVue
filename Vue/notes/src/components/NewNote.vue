@@ -1,16 +1,16 @@
 <template>
     <div class="new-note">
         <div class="title-select">
-            <input v-model="note.title" type="text" placeholder="Title">
+            <input v-model="note.title" type="text" placeholder="Title" style="font-family: 'Montserrat';">
             <div class="select-item">
                 <label>Priority:</label>
-                <select v-model="note.priority">
+                <select v-model="note.priority" style="font-family: 'Montserrat';">
                     <option v-for="(priority, index) in priorities" v-bind:key="index">{{ priority }}</option>
                 </select>
             </div>
         </div>
-        <textarea v-model="note.description" placeholder="Description"></textarea>
-        <button class="btn btnPrimary btn-margin" @click='addNote'>Create</button>
+        <textarea v-model="note.description" placeholder="Description" style="font-family: 'Montserrat';"></textarea>
+        <button class="btn btnPrimary btn-margin" style="font-family: 'Montserrat';" @click='addNote'>Create</button>
     </div>
 </template>
 

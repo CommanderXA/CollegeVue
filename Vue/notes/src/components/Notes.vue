@@ -2,14 +2,13 @@
     <div class="notes">
         <div class="note" :class="[{ full: !grid }, note.priority.toLowerCase().replace(/\s/g,'') ]" v-for="(note, index) in notes" :key="index">
             <div class="note-header" :class="[{ full: !grid }, note.priority.toLowerCase().replace(/\s/g,'') ]">
-                <p>{{ note.title }}</p>
+                <div class="title-input-change"><p>{{ note.title }}</p><input v-model="note.title" :class="[note.priority.toLowerCase().replace(/\s/g,'')]" class="title-changer" type="text"></div>
                 <p style="cursor: pointer;" @click="removeNote(index)">x</p>
             </div>
 
             <div class="note-description">
                 <p>{{ note.description }}</p>
                 <span>{{ note.date }}</span>
-                <p>{{ note.isPriorityHigh }}</p>
             </div>
         </div>
     </div>
@@ -25,7 +24,7 @@ export default {
         grid: {
             type: Boolean,
             required: true,
-        },
+        }
     },
     methods: {
         removeNote(index) {
@@ -77,6 +76,9 @@ export default {
     p {
         font-size: 22px;
         color: #3f5bb8;
+        &.stateChanger1 {
+            opacity: 0;
+        }
     }
     &.high p{
         color: rgba(240, 189, 23, 1);
@@ -94,6 +96,33 @@ export default {
             margin-right: 0px;
         }
     }
+}
+.title-changer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    opacity: 0;
+    font-size: 22px;
+    font-family: 'Montserrat';
+    color: #3f5bb8;
+    &.high {
+        color: rgba(240, 189, 23, 1);;
+    }
+    &.veryhigh {
+        color: #e04040;
+    }
+}
+.title-changer:focus {
+    opacity: 1;
+}
+.title-input-change {
+    position: relative;
 }
 .note-description {
     p {

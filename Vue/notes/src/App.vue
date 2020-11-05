@@ -23,8 +23,7 @@
             </div>
           </div>
 
-          <notes :notes="notesFilter" :grid="grid" :isPriorityHigh="isPriorityHigh" :isPriorityVeryHigh="isPriorityVeryHigh" @remove="removeNote"/>
-
+          <notes :notes="notesFilter" :changeStateActive="changeStateActive" :grid="grid" :isPriorityHigh="isPriorityHigh" :isPriorityVeryHigh="isPriorityVeryHigh" @remove="removeNote"/>
         </div>
       </section>
 
@@ -48,12 +47,11 @@ export default {
       search: '',
       message: null,
       grid: true,
+      changeStateActive: false,
       note: {
         	title: '',
           description: '',
           priority: 'Standard',
-          isPriorityHigh: Boolean(this.priority === 'High'),
-          isPriorityVeryHigh: Boolean(this.priority === 'Very High'),
       },
       notes: [
           {
@@ -120,6 +118,9 @@ export default {
     },
     removeNote(index) {
       this.notes.splice(index, 1)
+    },
+    showChanger() {
+      this.changeStateActive = true
     }
   }
 }
