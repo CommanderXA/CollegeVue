@@ -1,9 +1,17 @@
 <template>
   <div>
-    <modals title="The Validate Modal" @close=onclose>
+    <modals title="The Register Modal" @close=onclose>
 
             <div slot="body">
               <form @submit.prevent="onSubmit">
+                <div class="form-item" :class="{ errorInput: $v.name.$error }">
+                  <label>Name</label>
+                  <p class="errorText" v-if="!$v.name.required">This Filed is required</p>
+                  <p class="errorText" v-if="!$v.name.minLength">Your name must contain at least {{ $v.name.$params.minLength.min }} letters</p>
+                  <input v-model="name" 
+                  :class="{ error: $v.name.$error }"
+                  @change="$v.name.$touch()">
+                </div>
 
                 <div class="form-item" :class="{ errorInput: $v.email.$error }">
                   <label>Email</label>
@@ -23,10 +31,20 @@
                   @change="$v.password.$touch()">
                 </div>
 
+                <div class="form-item" :class="{ errorInput: $v.repeatPassword.$error }">
+                  <label>Repeat Password</label>
+                  <p class="errorText" v-if="!$v.repeatPassword.required">This Filed is required</p>
+                  <p class="errorText" v-if="!$v.repeatPassword.sameAsPassword">Passwords must match</p>
+                  <input v-model="repeatPassword" 
+                  :class="{ error: $v.repeatPassword.$error }"
+                  @change="$v.repeatPassword.$touch()">
+                </div>
+
                 <button class="btn btnPrimary">Submit</button>
+                <br>
+                <br>
+                <a @click.prevent="$emit('on-redirect')" class="link">Already have an account?</a>
               </form>
-              <br>
-              <a @click.prevent="$emit('on-redirect')" class="link">Don't have an account?</a>
             </div>
 
     </modals>
@@ -36,18 +54,23 @@
 <script>
 import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 import modals from "@/components/UI/Modal.vue"
-import modalRegistration from '@/components/ModalRegistration.vue'
 export default {
   components: {
-    modals, modalRegistration
+    modals
   },
   data() {
     return {
+      name: '',
       email: '',
       password: '',
+      repeatPassword: ''
     }
   },
   validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
     email: {
       required,
       email
@@ -56,6 +79,10 @@ export default {
       required,
       minLength: minLength(6)
     },
+    repeatPassword: {
+      required,
+      sameAsPassword: sameAs('password')
+    }
   },
   methods: {
     onSubmit() {

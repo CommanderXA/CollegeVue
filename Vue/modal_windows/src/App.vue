@@ -30,7 +30,9 @@
 
             <button class="btn btnPrimary" @click="modalValidate = true">Show modal with validate form</button>
             <!-- modal with validate -->
-            <modalValidate v-show="modalValidate" @close="modalValidate = false"/>
+            <modalValidate v-show="modalValidate" @close="modalValidate = false" @on-redirect="redirect"/>
+
+            <modalRegistration v-show="modalRegistration" @close="modalRegistration = false" @on-redirect="redirect"/>
           </div>
         </section>
 
@@ -41,11 +43,13 @@
 <script>
 import modals from '@/components/UI/Modal.vue'
 import modalValidate from '@/components/ModalValidate.vue'
+import modalRegistration from '@/components/ModalRegistration.vue'
 export default {
   name: 'App',
   components: {
     modals,
-    modalValidate
+    modalValidate,
+    modalRegistration
   },
   data() {
     return {
@@ -55,7 +59,8 @@ export default {
         name: '',
         email: ''
       },
-      modalValidate: false
+      modalValidate: false,
+      modalRegistration: false
     }
   },
   methods: {
@@ -67,6 +72,12 @@ export default {
       this.modalSecond.name = ""
       this.modalSecond.email = ""
       this.modalSecond.show = false
+    },
+    redirect () {
+      if(this.modalValidate || this.modalRegistration) {
+        this.modalValidate = !this.modalValidate
+        this.modalRegistration = !this.modalRegistration
+      }
     }
   }
 }
