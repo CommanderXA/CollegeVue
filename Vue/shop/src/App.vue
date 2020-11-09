@@ -26,7 +26,7 @@ export default {
     return {
       links: [
         { title: 'Home', url: '/' },
-        { title: 'shop', url: '/shop' }
+        { title: 'Shop', url: '/shop' }
       ]
     }
   }

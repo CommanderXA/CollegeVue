@@ -3,7 +3,7 @@
       
       <section>
         <div class="container">
-          <h1>Example Page</h1>
+          <h1>shop Page</h1>
           <input v-model="message" type="text">
           <button class="btn" @click="setMessage">Change the message</button>
           <p>{{ getMessage }}</p>
