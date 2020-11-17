@@ -1,21 +1,12 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
-    <Promo />
-    <Intro title="Recently Added" />
+    <Intro title="Posts" />
     <PostsList :posts="posts"/>
-    <Contacts />
   </div>
 </template>
 
 <script>
-import Promo from '@/components/Promo.vue'
-import Contacts from '@/components/Contacts.vue'
-
 export default {
-  components: {
-    Promo,
-    Contacts
-  },
   data () {
     return {
       posts: [
