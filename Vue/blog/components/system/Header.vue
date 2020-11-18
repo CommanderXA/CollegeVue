@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-.logo {
+.logo a {
   color: #333;
 }
 .navbar-link {
