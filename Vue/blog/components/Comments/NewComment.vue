@@ -22,7 +22,15 @@
 
 <script>
 
+import axios from 'axios'
+
 export default {
+    props: {
+        postId: {
+            type: String,
+            required: true
+        }
+    },
     data () {
         return {
             message: null,
@@ -34,10 +42,17 @@ export default {
     },
     methods: {
         onSubmit () {
-            console.log(this.comment);
-            this.comment.name = ''
-            this.comment.text = ''
-            this.message = 'Submitted'
+            this.$store.dispatch('addComment', {
+                postId: this.postId,
+                published: true,
+                ...this.comment
+            })
+                .then(() => {
+                    this.message = 'Submitted'
+                    this.comment.name = ''
+                    this.comment.text = ''
+                })
+                .catch(e => {console.log(e)})
         }
     }
 }

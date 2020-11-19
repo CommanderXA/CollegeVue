@@ -20,7 +20,7 @@ export default {
     data () {
         return {
             links: [
-                { title: 'Blog', url: '/' },
+                { title: 'Blog', url: '/blog' },
                 { title: 'About', url: '/about' },
             ]
         }

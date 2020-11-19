@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss">
 .post-preview {
-    max-width: 31%;
+    width: 31%;
     padding: 16px;
     margin: 0;
     margin-bottom: 20px;

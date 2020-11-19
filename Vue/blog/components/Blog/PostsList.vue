@@ -30,7 +30,7 @@ export default {
 <style lang="scss">
 .posts__wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     flex-wrap: wrap;
 }
