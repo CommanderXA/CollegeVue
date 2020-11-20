@@ -44,7 +44,7 @@ export default {
         onSubmit () {
             this.$store.dispatch('addComment', {
                 postId: this.postId,
-                published: true,
+                published: false,
                 ...this.comment
             })
                 .then(() => {
