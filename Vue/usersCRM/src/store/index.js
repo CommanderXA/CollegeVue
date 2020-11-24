@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import Users from './Users'
+import Users from './users'
 
 export default new Vuex.Store({
     modules: {
